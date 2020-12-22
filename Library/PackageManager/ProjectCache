@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637437390888475555
-    m_Hash: 4136951066
+      ticks: 637442555254745868
+    m_Hash: 2380648995
   m_LockFileStatus:
     m_FilePath: D:/Unity Projects/WebRacer/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637437390907598442
-    m_Hash: 2776855112
+      ticks: 637442555274388030
+    m_Hash: 3502454500
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
@@ -586,12 +586,12 @@ m_PackageAssets:
         url: https://github.cds.internal.unity3d.com/unity/com.unity.textmeshpro.git
         revision: 1604b62e543216408311bcd1355a7a9ca1e65765
         path: 
-    - packageId: com.unity.timeline@1.3.4
+    - packageId: com.unity.timeline@1.3.6
       testable: 0
       isDirectDependency: 1
-      version: 1.3.4
+      version: 1.3.6
       source: 1
-      resolvedPath: D:\Unity Projects\WebRacer\Library\PackageCache\com.unity.timeline@1.3.4
+      resolvedPath: D:\Unity Projects\WebRacer\Library\PackageCache\com.unity.timeline@1.3.6
       assetPath: Packages/com.unity.timeline
       name: com.unity.timeline
       displayName: Timeline
@@ -723,13 +723,13 @@ m_PackageAssets:
       entitlements:
         isAllowed: 1
       isAssetStorePackage: 0
-      datePublishedTicks: 637275077980000000
+      datePublishedTicks: 637359675340000000
       documentationUrl: 
       hasRepository: 1
       repository:
         type: git
         url: https://github.cds.internal.unity3d.com/unity/com.unity.timeline.git
-        revision: 93390c9ed54c6cc8b96367c850109b547225338b
+        revision: d9d35444c8403989a7e2099b1dafeb73d2033e37
         path: 
     - packageId: com.unity.ugui@1.0.0
       testable: 0
