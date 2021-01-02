@@ -1,0 +1,12 @@
+# ignores everything
+/*
+/*/
+
+# except those
+!.gitignore
+!.gitattributes
+!README.md
+
+!/ProjectSettings/
+!/Assets/
+
