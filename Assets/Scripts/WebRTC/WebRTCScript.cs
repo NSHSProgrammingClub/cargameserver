@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 using Unity.WebRTC;
@@ -29,15 +28,14 @@ public class WebRTCScript : MonoBehaviour
         WebRTC.Initialize(EncoderType.Software);
     }
 
+    /*
+    1024x1024
+    */
     RTCConfiguration getRTCConfiguration()
     {
         RTCConfiguration config = default;
-        config.iceServers = new RTCIceServer[]
-        {
-            new RTCIceServer {
-                urls = new string[] { "stun:stun.l.google.com:19302" }
-            },
-        };
+
+        config.iceServers = WebRTCSettings.iceServers;
 
         return config;
     }
@@ -46,7 +44,7 @@ public class WebRTCScript : MonoBehaviour
     {
         signaling = gameObject.GetComponent<Signaling>();
         senders = new List<RTCRtpSender>();
-        videoStream = cam.CaptureStream(1280, 720, 1000000);
+        videoStream = cam.CaptureStream(1024, 1024, 1000000);
         StartCoroutine(WebRTC.Update());
     }
 

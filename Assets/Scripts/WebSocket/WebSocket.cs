@@ -386,6 +386,7 @@ namespace NativeWebSocket
                 m_CancellationToken = m_TokenSource.Token;
 
                 m_Socket = new ClientWebSocket();
+                m_Socket.Options.AddSubProtocol("Tls");
 
                 foreach (var header in headers)
                 {
@@ -399,6 +400,7 @@ namespace NativeWebSocket
             }
             catch (Exception ex)
             {
+                Debug.Log(ex);
                 OnError?.Invoke(ex.Message);
                 OnClose?.Invoke(WebSocketCloseCode.Abnormal);
             }

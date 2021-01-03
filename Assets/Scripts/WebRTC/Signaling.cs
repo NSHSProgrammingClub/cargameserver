@@ -68,7 +68,7 @@ public class Signaling : MonoBehaviour
     {
         webRTCScript = gameObject.GetComponent<WebRTCScript>();
 
-        websocket = new WebSocket("ws://localhost:8080");
+        websocket = new WebSocket(WebRTCSettings.websocketURL);
 
         websocket.OnOpen += () =>
         {
@@ -110,7 +110,6 @@ public class Signaling : MonoBehaviour
             }
         };
         connectToIntermediateServer();
-
         await websocket.Connect();
 
     }
