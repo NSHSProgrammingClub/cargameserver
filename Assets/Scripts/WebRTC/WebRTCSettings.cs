@@ -1,4 +1,4 @@
-#define USE_PROD_SERVERS
+//#define USE_PROD_SERVERS
 
 using Unity.WebRTC;
 

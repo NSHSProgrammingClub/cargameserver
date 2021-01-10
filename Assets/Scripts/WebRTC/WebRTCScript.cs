@@ -5,12 +5,16 @@ using System.Collections.Generic;
 
 public class WebRTCScript : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
+    [SerializeField] private Camera forward;
+    [SerializeField] private Camera backward;
+    [SerializeField] private Camera right;
+    [SerializeField] private Camera left;
+    [SerializeField] private Camera up;
+    [SerializeField] private Camera down;
 
     Signaling signaling;
     private RTCPeerConnection connection;
     private RTCDataChannel dataChannel;
-    MediaStream videoStream;
     List<RTCRtpSender> senders;
 
     private RTCOfferOptions offerOptions = new RTCOfferOptions
@@ -44,7 +48,6 @@ public class WebRTCScript : MonoBehaviour
     {
         signaling = gameObject.GetComponent<Signaling>();
         senders = new List<RTCRtpSender>();
-        videoStream = cam.CaptureStream(1024, 1024, 1000000);
         StartCoroutine(WebRTC.Update());
     }
 
@@ -60,16 +63,23 @@ public class WebRTCScript : MonoBehaviour
         connection.OnNegotiationNeeded = () => { StartCoroutine(onNegotiationNeeded());};
 
         dataChannel = connection.CreateDataChannel("data", ref dataChannelOptions);
+        addCamera(forward);
+        addCamera(backward);
+        addCamera(right);
+        addCamera(left);
+        addCamera(up);
+        addCamera(down);
+    }
+    void addCamera(Camera cam){
+        MediaStream videoStream = cam.CaptureStream(720, 720, 10_000_000);
 
-
-
-
+        Debug.Log("camera added");
         foreach(var track in videoStream.GetTracks())
         {
-            senders.Add(connection.AddTrack(track, videoStream));
+            senders.Add(connection.AddTrack(track, null));
         }
-    }
 
+    }
     void onIceConnectionChange(RTCIceConnectionState state)
     {
         switch (state)
