@@ -166,7 +166,8 @@ public class ItemManager : MonoBehaviour
         if (items[slot - 1])
         {
             //playermodelSlots[currentItem.slot - 1].SetActive(false);
-            viewmodelSlots[currentItem.slot - 1].SetActive(false);
+            //print(currentItem.itemName);
+            //viewmodelSlots[currentItem.slot - 1].SetActive(false);
 
             // first time equipping
             if (viewmodelSlots[slot - 1].transform.childCount <= 0)

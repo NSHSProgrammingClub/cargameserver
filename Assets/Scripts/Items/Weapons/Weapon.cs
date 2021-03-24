@@ -20,7 +20,7 @@ public class Weapon : Item
 
     [SerializeField] private FiremodeType[] _firemodeType;
 
-    [SerializeField] private static FiremodeType _currentFireModeType;
+    //[SerializeField] private static FiremodeType _currentFireModeType;
 
     [SerializeField] private WeaponGraphics _graphics;
 
@@ -57,7 +57,7 @@ public class Weapon : Item
     public WeaponType weaponType => _weaponType;
     public FiremodeType[] firemodeType => _firemodeType;
 
-    public FiremodeType currentFireModeType = _currentFireModeType;
+    [HideInInspector] public FiremodeType currentFireModeType;
 
     public WeaponGraphics graphics => _graphics;
 

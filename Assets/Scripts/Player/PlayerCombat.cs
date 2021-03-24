@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -9,7 +7,7 @@ public class PlayerCombat : MonoBehaviour
     /*[SerializeField] */private ItemManager itemManager;
     private Weapon weapon;
 
-    private Camera playerCamera;
+    [SerializeField] private Camera playerCamera;
 
     [SerializeField] private LayerMask targets;
 
@@ -18,9 +16,8 @@ public class PlayerCombat : MonoBehaviour
     {
         itemManager = GetComponent<ItemManager>();
 
-        weapon = itemManager.GetCurrentItem() as Weapon;
-        
-        weapon.currentFireModeType = weapon.firemodeType[0];
+        if (itemManager.GetCurrentItem() is Weapon)
+            weapon = itemManager.GetCurrentItem() as Weapon;
     }
 
 
@@ -81,7 +78,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
-        weapon = itemManager.GetCurrentItem() as Weapon;
+        Item item = itemManager.GetCurrentItem();
+        if (item is Weapon)
+            weapon = item as Weapon;
         GetInput();
     }
 }
