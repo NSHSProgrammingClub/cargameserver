@@ -63,7 +63,7 @@ public class Weapon : Item
 
     public float range => _range;
 
-    public int firerate => _firerate / 10; // dividing by 10 can be changed
+    public int firerate => _firerate;
 
     public Ammunition ammunition => _ammunition;
 

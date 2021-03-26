@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcc8f0725d45734cbdc59464f7762bc, type: 3}
+  m_Name: PPSH-41
+  m_EditorClassIdentifier: 
+  _viewmodelPrefab: {fileID: 7342544569184377259, guid: 426b28d18964c1340afcd168973c10f3, type: 3}
+  _itemName: PPSH-41
+  _itemType: 0
+  _slot: 1
+  _weaponType: 3
+  _firemodeType: 00000000
+  _graphics: {fileID: 8289611657984493356, guid: 426b28d18964c1340afcd168973c10f3, type: 3}
+  _range: 100
+  _firerate: 1000
+  _weight: 0
+  _recoilAmount: 0
+  _countryOfOrigin: USSR
+  _manufacturer: Cheese
+  currentFireModeType: 0

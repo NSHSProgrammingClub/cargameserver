@@ -12,6 +12,7 @@ public enum WeaponType
     rifle,
     pistol,
     shotgun,
+    smg,
     melee
 }
 

@@ -1,0 +1,19 @@
+<<<<<<< HEAD:Library/PackageCache/com.unity.probuilder@4.4.0/Content/Resources/Materials/EdgePicker.mat.meta
+fileFormatVersion: 2
+guid: 3cf1de25cf9d2e242962c19930780cfe
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: e012753a2c2a61040aa2008e0f0d40b7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> 9924f2220a6df8d8e88b10bf33aba276b4696faf:Assets/PPSH-41/Animations/EmptyFire.anim.meta

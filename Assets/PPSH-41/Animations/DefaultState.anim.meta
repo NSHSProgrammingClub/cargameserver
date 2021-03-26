@@ -1,0 +1,19 @@
+<<<<<<< HEAD:Library/PackageCache/com.unity.probuilder@4.4.0/Content/Resources/Materials/Collider.mat.meta
+fileFormatVersion: 2
+guid: c4c5cc71f11430c4bb3b76d494deb62e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: acd94ba140c0766408ad3dfb0f0055c4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> 9924f2220a6df8d8e88b10bf33aba276b4696faf:Assets/PPSH-41/Animations/DefaultState.anim.meta

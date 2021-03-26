@@ -5,53 +5,24 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController charController;
 
-    [SerializeField] private float speed;
+    private CharacterController characterController;
 
-    [SerializeField] private float jumpMagnitude;
+    [SerializeField] private float playerSpeed=120;
+    [SerializeField] private float playerJumpMagnitude=25;
 
-    [SerializeField] private float mass = 1f;
+    private Vector3 velocity = Vector3.zero;
 
-    private float yVel;
-
-
-    private Vector3 movement = Vector3.zero;
-    private Vector3 jump;
-
-    #region Collision Check Vars
-    
-    [SerializeField] private Transform groundCheck;
-    private float groundDistance;
-    [SerializeField] private LayerMask groundLayer;
-
-    [SerializeField] private float slideFriction;
-    private Vector3 hitNormal;
-
-    [SerializeField] private CapsuleCollider groundCollider;
-
-    #endregion
-
-    #region Caching
+    private bool isJumping;
+    private Vector3 xzMovement;
 
     private float originalSlopeLimit;
 
-    #endregion
-
-    private bool isJump;
-    // might not need this
-    private bool isGrounded => Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
-    //private bool isGrounded;
-
     private void Start()
     {
-        charController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
 
-        jump = Vector3.up * jumpMagnitude;
-
-        groundDistance = charController.skinWidth;
-
-        originalSlopeLimit = charController.slopeLimit;
+        originalSlopeLimit = characterController.slopeLimit;
     }
 
     private void GetInput()
@@ -59,68 +30,75 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        movement = (transform.right * x + transform.forward * z).normalized;
-
-        isJump = Input.GetButtonDown("Jump");
-
+        xzMovement = (transform.right * x + transform.forward * z).normalized * playerSpeed;
+        if (Input.GetButtonDown("Jump")) isJumping = true;
     }
 
     private void Jump()
     {
-        if (isJump && charController.isGrounded)
-        {
-            //Debug.Log("jumping");
-            yVel = Mathf.Sqrt(jumpMagnitude * -2f * Physics.gravity.y);
-            charController.Move(transform.up * yVel * Time.deltaTime);
-            isJump = false;
+        if (isJumping) {
+            //Debug.Log("jump! "+characterController.isGrounded+" velocity.y "+velocity.y);
+            if (characterController.isGrounded)
+            {
+
+                float yJerk = Mathf.Sqrt(playerJumpMagnitude * -2f * Physics.gravity.y);//Magic code by Sasha
+                velocity.y = yJerk;
+            }
+            isJumping = false;
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        hitNormal = hit.normal;
-    }
 
     private void DoGravity()
     {
 
-        yVel += Physics.gravity.y * mass * Time.deltaTime;
-
-
-        charController.Move(transform.up * yVel * Time.deltaTime);
+        //yVel += Physics.gravity.y * mass * Time.deltaTime;
+        velocity.y += Physics.gravity.y* Time.deltaTime*3;
+        //characterController.Move(transform.up * yVel * Time.deltaTime);
     }
-
-    private void Move() => CmdMove();
-    
-    private void CmdMove() => RpcMove();
-
-    private void RpcMove() => charController.Move(movement * speed * Time.deltaTime);
 
 
 
     private void Update()
     {
-        if (charController.isGrounded && movement.y == 0)
-            yVel = -2f;
 
 
-        if (charController.isGrounded)
-            charController.slopeLimit = originalSlopeLimit;
+        if (characterController.isGrounded)
+
+            characterController.slopeLimit = originalSlopeLimit;
         else
-            charController.slopeLimit = 90f;
+            characterController.slopeLimit = 90f;
 
 
-        if (!GameManager.isInMenu)
-        {
-            GetInput();
-            Move();
-            DoGravity();
-            Jump();
+
+        GetInput();
+        DoGravity();
+        Jump();
+
+
+        velocity += xzMovement * Time.deltaTime;
+
+        characterController.Move(velocity * Time.deltaTime);
+        if(Time.deltaTime!=0){
+            velocity.x = characterController.velocity.x ;
+            velocity.z = characterController.velocity.z ;
+        }
+        /*
+        Make sure y velocity is not too far from real y velocity. (y vel still has to be less than real y vel for ground collition to work)
+        */
+        if(characterController.velocity.y-2>velocity.y){
+            velocity.y=Mathf.Max(velocity.y,-2);
+        }
+        if(characterController.velocity.y<velocity.y){
+            velocity.y=characterController.velocity.y;
         }
     }
 
-    private void FixedUpdate()
+    private void  FixedUpdate()
     {
+        velocity.x *= .8f;
+        velocity.y *= .99f;
+        velocity.z *= .8f;
+
     }
 }
-

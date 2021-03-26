@@ -10,40 +10,34 @@ public class PlayerCameraMovement : MonoBehaviour
     [SerializeField] private float yMaximum = 90f;
     [SerializeField] private float yMinimum = -90f;
 
-    private Transform root;
+    private Transform playerObjectTransform;
 
-    private float xRotation;
-
-    private bool isInMenu = false;
+    private float yRotation;
 
     private void Start()
     {
-        root = gameObject.transform.parent.transform;
+        playerObjectTransform = gameObject.transform.parent.transform;
+
     }
 
-    public void SetMenuState(bool _isInMenu)
-    {
-        isInMenu = _isInMenu;
-    }
 
     private void Rotate()
     {
         float x = Input.GetAxisRaw("Mouse X") * sensitivity * Time.deltaTime;
         float y = Input.GetAxisRaw("Mouse Y") * sensitivity * Time.deltaTime;
+        yRotation -= y;
 
-        xRotation -= y;
+        yRotation = Mathf.Clamp(yRotation, yMinimum, yMaximum);
 
-        xRotation = Mathf.Clamp(xRotation, yMinimum, yMaximum);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        root.Rotate(Vector3.up * x);
-
+        transform.localRotation = Quaternion.Euler(yRotation, 0f, 0f);
+        playerObjectTransform.Rotate(Vector3.up * x);
     }
 
     private void Update()
     {
-        if (!GameManager.isInMenu)
-            Rotate();
+
+        Rotate();
     }
 
 }

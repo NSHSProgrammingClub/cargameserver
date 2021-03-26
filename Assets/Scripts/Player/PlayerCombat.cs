@@ -35,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
         if (hasHit)
         {
             // means that the bullet hit something
-            Debug.Log("Hit target " + hits.collider.name);
+            print("Hit target " + hits.collider.name);
         }
 
         print("player fired");
