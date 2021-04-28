@@ -73,7 +73,7 @@ public class PPSH : MonoBehaviour
                 anim.SetTrigger("Fire");
                 emit.enabled = true;
                 ammunition -= 1;
-                Debug.Log(ammunition);
+                //Debug.Log(ammunition);
             }
         }
     }
